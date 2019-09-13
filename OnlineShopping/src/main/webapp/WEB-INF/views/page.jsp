@@ -63,6 +63,12 @@
           <%@ include file="./contact.jsp" %>
        </c:if>
        
+       
+         <!-- load when products and category -->
+       <c:if test="${userClickAllProducts == true or userClickCategoryProducts == true }">
+          <%@ include file="./listProducts.jsp" %>
+       </c:if>
+       
        </div>      
    
     <!-- /.container -->
@@ -70,13 +76,19 @@
      <%@ include file="./shared/footer.jsp" %>
    <!-- footer -->
     <!-- /.container -->
+    
+   
+     <!-- custom javascript -->
+   
 
     <!-- JavaScript -->
-    <script src="${js}/jquery-1.10.2.js"></script>
-    <script src="${js}/bootstrap.js"></script>
+    <script src="${js}/jquery.js"></script>
     
-    <!-- custom javascript -->
-    <script src="${js}/myapp.js"></script>
+    <script src="${js}/bootstrap.js"></script>
+ 
+    <!-- self coded javascript -->
+
+		<script src="${js }/myapp.js"></script>
     
     </div>
 

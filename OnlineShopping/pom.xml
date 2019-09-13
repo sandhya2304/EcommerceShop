@@ -16,6 +16,13 @@
     </properties>
  
   <dependencies>
+  
+  <!-- link backend -->
+  <dependency>
+     <groupId>com.shop</groupId>
+     <artifactId>OnlineShoppingBackEnd</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+   </dependency>
  
    <!-- java ee api -->
  
