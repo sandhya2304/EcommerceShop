@@ -1,5 +1,5 @@
  <div class="container footer">
-
+  <hr/>
         <hr>
 
         <footer>
@@ -10,5 +10,6 @@
                 </div>
             </div>
         </footer>
-
+<hr/>
+<hello>
     </div>
