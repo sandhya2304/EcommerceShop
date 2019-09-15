@@ -3,62 +3,95 @@ package com.shop.OnlineShoppingBackEnd.daoImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.OnlineShoppingBackEnd.dao.CategoryDao;
 import com.shop.OnlineShoppingBackEnd.dto.Category;
 
 
+@Transactional
 @Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao
 {
 	
-	static List<Category> categories = new ArrayList<Category>();	
+	@Autowired
+	private SessionFactory sessionFactory;
 	
-	static
-	{
-		Category c = new Category(1, "food", "food de do", "foodimg.jpg",true);
-		Category c1 = new Category(2, "cloth", "cloth de do", "clothfoodimg.jpg",true);
-		
-		categories.add(c);
-		categories.add(c1);
-	}
+
+	
 	
 	@Override
 	public List<Category> findAll() 
 	{	
-		return categories;
+		String activeCatgeory = "FROM Category WHERE active = :active";
+		Query quert = sessionFactory.getCurrentSession().createQuery(activeCatgeory);
+		quert.setParameter("active",true);
+		
+		
+		return quert.getResultList();
 	}
 
 	@Override
-	public Category findById(int id) {
-		for(Category category :categories )
+	public Category findById(int id)
+	{
+
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
+
+	}
+
+	@Override
+	
+	public boolean saveCategory(Category category)
+	{
+		try
 		{
-			if(category.getId()==id)
-			{
-				return category;
-			}
+			sessionFactory.getCurrentSession().persist(category);
+	
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
 		}
-		return null;
-	}
-
-	@Override
-	public void saveCategory(Category category) {
-		// TODO Auto-generated method stub
+		return false;
 		
 	}
 
 	@Override
-	public void deleteCategory(int id) {
-		// TODO Auto-generated method stub
+	public boolean deleteCategory(Category category) {
 		
+		category.setActive(false);
+		
+		try
+		{
+			sessionFactory.getCurrentSession().update(category);
+	
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
-	public void updateCategory(Category category) {
-		// TODO Auto-generated method stub
-		
+	public boolean updateCategory(Category category) {
+		try
+		{
+			sessionFactory.getCurrentSession().update(category);
+	
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
 	}
+
 	
 	
 

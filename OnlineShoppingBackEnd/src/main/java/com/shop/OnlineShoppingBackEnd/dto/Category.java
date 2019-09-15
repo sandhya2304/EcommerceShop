@@ -1,14 +1,32 @@
 package com.shop.OnlineShoppingBackEnd.dto;
 
+import java.io.Serializable;
 
-public class Category
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.Columns;
+
+@Entity
+public class Category implements Serializable
 {
-	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String description;
+	
+	@Column(name="image_url")
 	private String imageURL;
+	
+	@Column(name="is_active")
 	private boolean active = true;
+	
+	public Category() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	public Category(int id, String name, String description, String imageURL, boolean active) {
@@ -51,9 +69,11 @@ public class Category
 	}
 	
 	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
+				+ ", active=" + active + "]";
+	}
 	
 
 }

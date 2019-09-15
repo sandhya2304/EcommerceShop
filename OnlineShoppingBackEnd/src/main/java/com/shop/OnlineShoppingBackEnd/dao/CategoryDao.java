@@ -12,9 +12,9 @@ public interface CategoryDao
 	public List<Category> findAll();
 	public Category findById(int id);
 	
-	public void saveCategory(Category category);
-	public void deleteCategory(int id);
-	public void updateCategory(Category category);
+	public boolean saveCategory(Category category);
+	public boolean deleteCategory(Category category);
+	public boolean updateCategory(Category category);
 	
 	
 
