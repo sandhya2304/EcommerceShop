@@ -1,19 +1,27 @@
 package com.shop.OnlineShopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.OnlineShopping.exception.ProductNotFoundException;
 import com.shop.OnlineShoppingBackEnd.dao.CategoryDao;
 import com.shop.OnlineShoppingBackEnd.dao.ProductDao;
 import com.shop.OnlineShoppingBackEnd.dto.Category;
 import com.shop.OnlineShoppingBackEnd.dto.Product;
 
+
+
 @Controller
 public class PageController
 {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+	
 	@Autowired
 	private CategoryDao categoryDao;
 	
@@ -27,6 +35,11 @@ public class PageController
 	{
 		ModelAndView mv  = new ModelAndView("page");
 		mv.addObject("title","Home");
+		
+		logger.info("inside pagecontroller index method--info");
+		logger.debug("inside pagecontroller index method--debug");
+		
+		
 		mv.addObject("categories",categoryDao.findAll());
 		mv.addObject("userClickHome",true);
 		return mv;
@@ -90,10 +103,15 @@ public class PageController
 	 * 
 	 */
 	@RequestMapping(value= "/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable int id)
+	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException
 	{
 		ModelAndView mv = new ModelAndView("page");
 		Product product = productDao.findById(id);
+		
+		if(product == null)
+		{
+			throw new ProductNotFoundException();
+		}
 		
 		//update view count
 		product.setViews(product.getViews()+1);
