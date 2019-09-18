@@ -14,8 +14,6 @@ import com.shop.OnlineShoppingBackEnd.dao.ProductDao;
 import com.shop.OnlineShoppingBackEnd.dto.Category;
 import com.shop.OnlineShoppingBackEnd.dto.Product;
 
-
-
 @Controller
 public class PageController
 {
@@ -59,7 +57,7 @@ public class PageController
 	public ModelAndView contact()
 	{
 		ModelAndView mv  = new ModelAndView("page");
-		mv.addObject("contact","Contact");
+		mv.addObject("title","Contact");
 		mv.addObject("userClickContact",true);
 		return mv;
 	}

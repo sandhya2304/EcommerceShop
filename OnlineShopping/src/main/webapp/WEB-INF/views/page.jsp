@@ -80,6 +80,14 @@
           <%@ include file="./singleProduct.jsp" %>
        </c:if>
        
+       
+          
+         <!-- load when manage product -->
+       <c:if test="${userClickWhenManageProduct ==true }">
+          <%@ include file="./manageProducts.jsp" %>
+       </c:if>
+       
+       
        </div>      
    
     <!-- /.container -->

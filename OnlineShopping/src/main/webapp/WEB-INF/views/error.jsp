@@ -70,12 +70,12 @@
               <div class="col-xs-12">
               
                 <div class="jumbotron">
-                  <h1>${erroTitle}</h1>
+                  <h1>${errorTitle}</h1>
                   <hr/>
                   
                   <blockquote>
                   
-                      ${errorDesciption }
+                      ${errorDescription }
                     
                   </blockquote>
                   
