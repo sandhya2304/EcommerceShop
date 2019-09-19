@@ -16,16 +16,17 @@
 	</div>
 	<div class="row">
 	
-	  <!-- display the product image -->
-	  <div class="col-xs-12 col-sm-4">
-	     
-	      <div class="thumbnail">
-	     
-	         <img src="${images}/${product.code}.jpg" class="img img-responsive"/>
-	                  
-	      </div>
-	      
-	      </div>
+	 <!-- display the product image -->
+      <div class="col-xs-12 col-sm-4">
+        
+         <div class="thumbnail">
+         
+            <img src="${images}/${product.code}.jpg" class="img img-responsive"/>
+         
+         </div>
+         
+      
+      </div>
 	
 	  <!-- product descripton -->
       <div class="col-xs-12 col-sm-8">
