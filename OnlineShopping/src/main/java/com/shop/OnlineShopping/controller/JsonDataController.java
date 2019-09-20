@@ -11,30 +11,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shop.OnlineShoppingBackEnd.dao.ProductDao;
 import com.shop.OnlineShoppingBackEnd.dto.Product;
 
-
-
 @Controller
-@RequestMapping(value="/json/data")
-public class JsonDataController
-{
+@RequestMapping(value = "/json/data")
+public class JsonDataController {
 	@Autowired
 	private ProductDao productDao;
-	
-	
-	@RequestMapping(value="/all/Products")
+
+	@RequestMapping(value = "/all/Products")
 	@ResponseBody
-	public List<Product> listAllProduct()
-	{
+	public List<Product> listAllProduct() {
 		return productDao.listActiveProducts();
 	}
-	
-	
-	@RequestMapping(value="/category/{id}/Products")
+
+	@RequestMapping(value = "admin/all/Products")
 	@ResponseBody
-	public List<Product> getProductByCategory(@PathVariable int id)
-	{
+	public List<Product> listAllProductForAdmin() {
+		return productDao.listAll();
+	}
+
+	@RequestMapping(value = "/category/{id}/Products")
+	@ResponseBody
+	public List<Product> getProductByCategory(@PathVariable int id) {
 		return productDao.listActiveProductsByCategory(id);
 	}
-	
 
 }
