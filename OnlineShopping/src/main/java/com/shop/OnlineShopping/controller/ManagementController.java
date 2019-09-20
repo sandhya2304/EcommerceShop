@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.OnlineShopping.util.fileUploadUtility;
@@ -65,14 +67,40 @@ public class ManagementController
 		return mv;
 	}
 	
+	@RequestMapping(value="/{id}/product",method = RequestMethod.GET)
+	public ModelAndView manageEditProduct(@PathVariable int id)
+	{
+		ModelAndView mv = new ModelAndView("page");
+		
+		mv.addObject("title","manage Products");
+		mv.addObject("userClickWhenManageProduct",true);
+		
+		Product nproduct = productDao.findById(id);
+		
+		mv.addObject("product",nproduct);
+		
+		
+		
+		
+		return mv;
+	}
+	
 	//handling product submission
 	@RequestMapping(value="/products",method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute ("product") Product mproduct,
 			 BindingResult results,Model model,HttpServletRequest request)
 	{
 		
-		new ProductValidator().validate(mproduct, results);
-		
+		if(mproduct.getId() == 0)
+		{
+		  new ProductValidator().validate(mproduct, results);
+		}else
+		{
+			if(!mproduct.getFile().getOriginalFilename().equals("") )
+			{
+				 new ProductValidator().validate(mproduct, results);
+			}
+		}
 		
 		if(results.hasErrors())
 		{
@@ -85,7 +113,17 @@ public class ManagementController
 		
 		//for debugging
 		logger.info(mproduct.toString());
-		productDao.saveProduct(mproduct);
+		
+		
+		if(mproduct.getId() == 0)
+		{
+			productDao.saveProduct(mproduct);
+		}else
+		{
+			productDao.updateProduct(mproduct);
+		}
+		
+		
 		
 		if(!mproduct.getFile().getOriginalFilename().equals(""))
 		{
@@ -95,6 +133,26 @@ public class ManagementController
 		
 		return "redirect:/manage/products?operation=product";
 	}
+	
+	//activation and deactivation product
+	@RequestMapping(value="/product/{id}/activation",method = RequestMethod.POST)
+	@ResponseBody
+	public String handleActivationProduct(@PathVariable int id)
+	{
+		//fetch product from db
+		Product product = productDao.findById(id);
+		
+		//
+		boolean isActive = product.isActive();
+		//activeate and deactivete based on field
+		product.setActive(!product.isActive());
+		
+		productDao.updateProduct(product);
+		
+		return (isActive)? "you have succesfully deactivate the product with id"+product.getId():
+			            "you have succesfully activate the product with id"+product.getId();
+	}
+	
 	
 	
 	//show all categories

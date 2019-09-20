@@ -235,7 +235,7 @@ $(function(){
 		    			
 		    			var str = '';
 		    			
-		    			str += ' <a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning" >';
+		    			str += ' <a href="'+window.contextRoot+'/manage/'+data+'/product" class="btn btn-warning" >';
 		                 str +=  '<span class="glyphicon glyphicon-pencil"></span></a>';
 		                 
 		    			
@@ -267,13 +267,23 @@ $(function(){
 		    				  if(confirmed)
 		    				    {
 		    					  console.log(value);
+		    					  
+		    					  var activationURL = window.contextRoot + '/manage/product/'+ value +'/activation';
+		    					  
+		    					  $.post(activationURL,function(data){
+		    					
 		    					  bootbox.alert({
 		    						 size: 'large',
 		    						 title: 'Information',
-		    						 message: 'You are going to perform operation on product'+value 
+		    						 message: data
 		    						  
 		    					  });
+		    					  
+		    					  
+		    					  });
+		    					  
 		    				    }
+		    				  
 		    					  else
 		    						  {
 		    						  checkbox.prop('checked',!checked);
