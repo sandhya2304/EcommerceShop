@@ -101,8 +101,19 @@
 								  itemValue="id"
 								/>
 								
+								<c:if test="${product.id == 0 }">
+								  
+								  <div class="text-right">
+								  <br/>
+									
+									<button type="button" class="btn btn-info btn-sm" data-toggle="modal" 
+									     data-target="#myModal">Add Category</button>
 									
 									
+								</c:if>	
+								
+								</div>
+								
 							</div>
 						</div>
 
@@ -174,24 +185,62 @@
 				</tfoot>
 				
          </table>
-     
-     
-     
-     
-   
-    
   </div>
+  
+  
+  
+ <div class="modal fade"   id="myModal"  role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+    
+         <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add new Category</h4>     
+      </div>
+      <div class="modal-body">
+        <!-- category form -->
+         
+         <s:form id="categoryForm" modelAttribute="category" action="${contextRoot}/manage/category"
+          method="POST" class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-md-4">Enter the Name:</label>
+							<div class="col-md-8">
+								<s:input class="form-control" type="text" path="name" id="category_name"
+									placeholder="Enter the category name" />
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-4">Enter the Description:</label>
+							<div class="col-md-8">
+								<s:textarea class="form-control" rows="5" cols="" path="description" id="category_description"
+									placeholder="Enter the category description" ></s:textarea>
+								
+							</div>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-8 col-md-offset-4">
+								<input type="submit" value="Add Category" class="btn btn-primary" /> 
+								
+						</div>
+						</div>
 
 
+					</s:form>
+        
+        
+      </div>
+      
+      
+    </div>  
+      
 
-
-
+ </div>
+  
 
 </div>
-
-
-
-
 
 
 </div>

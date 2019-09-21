@@ -1,5 +1,5 @@
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring" %>
 
 
@@ -102,6 +102,11 @@
 
     <!-- JavaScript -->
     <script src="${js}/jquery.js"></script>
+    
+    
+    <!-- jquery validator -->
+      <script src="${js}/jquery.validate.js"></script>
+    
     
     <script src="${js}/bootstrap.js"></script>
     

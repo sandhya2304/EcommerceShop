@@ -305,18 +305,51 @@ $(function(){
 		
 	  }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//**************************************************************************
+	//validation code for category
 	
+	var $categoryForm = $('#categoryForm');
+	
+	if($categoryForm.length)
+	  {
+		
+		$categoryForm.validate({
+			rules: {
+	            name: 
+	            {
+	            	required: true,
+	                minlength: 2
+	            },
+	            description: {
+	                required: true,
+	               
+	            }
+			},
+			messages: {
+				name:{
+				 required: "Please enter your name",
+				 minlength: "Your category name must be at least 2 characters long"
+				 
+			},
+			description:{
+				
+				 required: "Please enter description",
+			}
+		},
+		errorElement: 'em',
+		ErrorPlacement: function(error,element){
+			error.addClass('help-block');
+			error.insertAfter(element);
+		}
+
+		});
+		
+		
+		
+	  }
 	 
+	
+	//************************************************************************
+	
 });
