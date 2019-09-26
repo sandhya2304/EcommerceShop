@@ -61,6 +61,18 @@ public class PageController
 		mv.addObject("userClickContact",true);
 		return mv;
 	}
+	
+	@RequestMapping(value="/register")
+	public ModelAndView register()
+	{
+		ModelAndView mv  = new ModelAndView("page");
+		mv.addObject("title","register");
+		
+		return mv;
+	}
+	
+	
+	
 /**
  * method to load all products based on category
  * 	
