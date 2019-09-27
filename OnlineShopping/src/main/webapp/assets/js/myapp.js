@@ -352,4 +352,68 @@ $(function(){
 	
 	//************************************************************************
 	
+//validation code for login page
+	
+	var $loginForm = $('#loginForm');
+	
+	if($loginForm.length)
+	  {
+		
+		$categoryForm.validate({
+			rules: {
+	            username: 
+	            {
+	            	required: true,
+	               email:true
+	            },
+	            password: {
+	                required: true,
+	               
+	            }
+			},
+			messages: {
+				username:{
+				 required: "Please enter your username",
+				 email: "Enter email here:"
+				 
+			},
+			password:{
+				
+				 required: "Please enter password",
+			}
+		},
+		errorElement: 'em',
+		ErrorPlacement: function(error,element){
+			error.addClass('help-block');
+			error.insertAfter(element);
+		}
+
+		});
+		
+		
+		
+	  }
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//********************************************************************************
+	
 });

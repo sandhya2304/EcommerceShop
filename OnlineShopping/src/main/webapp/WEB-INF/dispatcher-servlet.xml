@@ -16,7 +16,8 @@
    
    
    <context:component-scan base-package="com.shop.OnlineShopping.*"/>
-    <context:component-scan base-package="com.shop.OnlineShoppingBackEnd.*"/>
+
+  
    
    <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -51,7 +52,7 @@
 	
 	<wf:flow-builder-services id="flowBuilderServices"
     	view-factory-creator="viewFactoryCreator"
-    	
+    	validator="validator"
    	/>
    	
    	
@@ -69,5 +70,6 @@
          <property name="viewResolvers" ref="viewResolver" />
  	</bean>	
    
+   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/> 	
    
    </beans>
