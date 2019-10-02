@@ -68,10 +68,10 @@
 			
    <div class="container">
     
-   	<c:if test="${not empty message}">
+   	<c:if test="${not empty msg}">
 		<div class="row">
 			<div class="col-xs-12 col-md-offset-2 col-md-8">
-				<div class="alert alert-danger fade in">${message}</div>
+				<div class="alert alert-danger fade in">${msg}</div>
 			</div>
 		</div>
 	</c:if>
@@ -115,6 +115,9 @@
           <div class="col-md-offset-4 col-md-8">
            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            <input type="submit" value="Login" class="btn btn-primary"/>
+           
+           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+           
           </div>
          </div>
         </form>

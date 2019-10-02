@@ -29,11 +29,47 @@
                   
                  <li id="register"><a href="${contextRoot }/register">Sign UP</a>
                     </li>
-                     <li id="login"><a href="${contextRoot }/login">Login</a>
+                   
+                     <li id="login">                    
+                       <a href="${contextRoot }/login">Login</a>
                     </li>
-                
-                </ul>
-                
+                   
+                     <li class="dropdown">
+                       
+                         <a href="javascript:void(0)" class="btn btn-default dropdown-toggle"
+                          id="dropdownMenu" 
+                          data-toggle="dropdown" >
+                          
+                          FullName ${userModel.fullname } 
+                          <span class="caret"></span>
+     
+                          </a>
+                          
+                      <ul class="dropdown-menu">
+                            <li>
+                            <a href="${contextRoot }/cart">
+                               
+                               <span class="glyphicon glyphicon-shopping-cart"></span>
+                               <span class="badge"> ${userModel.cart.cartLines }   </span>
+                               - &#8377; ${userModel.cart.grandTotal }  /-
+                               
+                            </a>
+                             
+                            </li>
+                          
+                             <li class="divider" role="separator"></li>      
+                     
+                     </li>
+                    
+                     
+                     <li>
+                       
+                         <a href="${contextRoot }/loguot">Logout</a> 
+                     
+                     </li>
+                      </ul>    
+               </ul> 
+          
                 
                 
                 

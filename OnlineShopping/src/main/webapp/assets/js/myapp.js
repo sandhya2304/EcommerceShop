@@ -24,12 +24,26 @@ $(function(){
 	
 	/****************************************************************/
 	
-	//code for jquery data
-	//creaet a dataset
+	
+	//csrf token meta tag
 	
 	
+	var token = $('meta[name="_csrf"]').attr('content');
+	
+	var header = $('meta[name="_csrf.header"]').attr('content');
+	
+	if(token.length >0  && header.length > 0)
+	  {
+		$(document).ajaxSend(function(e,xhr,options){
+			
+			xhr.setRequestHeader(header,token);
+			
+		});
+		
+	  }
 	
 	
+	/****************************************************************/
 	
 	var $table = $('#productListTable');
 	
@@ -141,10 +155,8 @@ $(function(){
 		
 	}
 	
-	//**********************************************************************//
 	
 	
-	//****************************************************************//
 	//  data table for admin                            //
 	//*****************************************************************//
 	
