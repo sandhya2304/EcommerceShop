@@ -27,8 +27,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		
 		<form-login login-page="/login" />
 			<access-denied-handler error-page="/access-denied"/>
-		<logout />
-	
 		
 	</http>
 		
@@ -47,9 +45,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		   </authentication-provider>
 		
 		</authentication-manager>
-		
-		
-		
 		
 		
 		</beans:beans>
