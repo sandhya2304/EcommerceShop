@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring" %>
 
 
-
+<h1></h1>
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
