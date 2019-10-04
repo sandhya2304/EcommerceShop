@@ -92,6 +92,12 @@
        </c:if>
        
        
+         <!-- load when user click show cart -->
+       <c:if test="${userClickShowCart ==true }">
+          <%@ include file="cart.jsp" %>
+       </c:if>
+       
+       
        </div>      
    
     <!-- /.container -->

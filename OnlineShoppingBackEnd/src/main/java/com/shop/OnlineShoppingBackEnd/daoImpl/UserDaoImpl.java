@@ -53,22 +53,7 @@ public class UserDaoImpl implements UserDao
 		return false;
 	}
 
-	@Override
-	public boolean updateCart(Cart cart)
-	{
-		try
-		{
-        	sessionFactory.getCurrentSession().update(cart);
-        	return true;
-        	
-        }catch(Exception e)
-        {
-        	e.getMessage();
-        }
-		
-		return false;
-	}
-
+	
 	@Override
 	public User getByEmail(String email)
 	{
