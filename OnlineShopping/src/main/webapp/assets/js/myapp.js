@@ -422,7 +422,49 @@ $(function(){
 	  }
 	 
 	
+	//************************************************//
+	//***handling the refresh cart button **//
 	
+	
+	
+	$('button[name="refreshCart"]').click(function(){
+		
+		
+		var cartLineId = $(this).attr('value'); 
+		var countElement = $('#count_'+cartLineId);
+		
+		var originalCount = countElement.attr('value');
+		var currentCount = countElement.val();
+		
+		
+		 if(currentCount !== originalCount)
+		{
+			 
+			// console.log("current count"+currentCount);
+			//  console.log("original count"+originalCount);
+			if(currentCount < 1 || currentCount >3)
+			 {
+				countElement.val(originalCount);
+				bootbox.alert({
+					
+				  size: 'medium',
+				  title: 'Error',
+				  message: 'Product Count min 1 and max 3'
+				
+				});
+					
+			 }
+			else
+				{
+				  var updateURL = window.contextRoot + '/cart/' +cartLineId +'/update?count='+currentCount;
+				  window.location.href = updateURL;
+	
+				}
+			 
+			 
+		}
+		
+	})
 	
 	
 	

@@ -4,6 +4,21 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
+ 
+   <c:if test="${not empty msg}">
+   
+      <div class="alert alert-info">
+       
+         <h3 class="text-center">
+          
+             ${msg}
+         
+         </h3>
+      
+      </div>
+
+
+  </c:if>
 
    <c:choose>
         <c:when test="${not empty cartLines }">
@@ -45,24 +60,24 @@
 							</td>
 							<td data-th="Price">&#8377; ${cartLine.buyingPrice }</td>
 							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="${cartLine.productCount}">
+								<input type="number" id="count_${cartLine.id }" min="1" max="3" class="form-control text-center" value="${cartLine.productCount}">
 							</td>
 							<td data-th="Subtotal" class="text-center">&#8377; ${cartLine.total }</td>
 							<td class="actions" data-th="">
-								<button class="btn btn-info btn-sm"><span class="glyphicon glyphicon-refresh"></span></button>
-								<button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>								
+								<button type="button" name="refreshCart" value="${cartLine.id }" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-refresh"></span></button>
+								<a href="${contextRoot}/cart/${cartLine.id}/delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>								
 							</td>
 						</tr>
 					
 					</c:forEach>
 						
-					</tbody>
+					</tbody> 
 					<tfoot>
 						<tr class="visible-xs">
 							<td class="text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}</strong></td>
 						</tr>
 						<tr>
-							<td><a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
+							<td><a href="${contextRoot }/show/all/products" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}</strong></td>
 							<td><a href="#" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
